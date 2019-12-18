@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./index.css">
+  <title>CSS效果</title>
+</head>
+<body>
+  <h1>CSS效果</h1>
+  <h2>对话框</h2>
+  <div class="dialog">这是一个对话框</div>
+  <h2>平行四边形</h2>
+  <div class="rhomboid"></div>
+  <h2>五角星</h2>
+  <div class="demo">
+    <div class="demo1"></div>
+    <div class="demo2"></div>
+  </div>
+</body>
+<script>
+  var demo = document.querySelector('.demo')
+  demo.addEventListener('mouseenter',function(e){
+    console.log('enter',e.target)
+  })
+  demo.addEventListener('mouseover',function(e){
+    console.log('over',e.target)
+  })
+</script>
+</html>
