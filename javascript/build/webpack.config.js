@@ -38,6 +38,10 @@ module.exports = {
         use: [
           'xml-loader'
         ]
+      },
+      {
+        test: /\.vue$/,
+        use: ['vue-loader']
       }
     ]
   },

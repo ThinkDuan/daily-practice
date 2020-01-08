@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Html</title>
+  <style>
+    .testInput{
+      margin-top: 10px;
+      margin-bottom: 20px;
+      background: blue;
+      padding: 30px;
+    }
+    .testFei{
+      width: 10px;
+      height: 30px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      padding-top: 30px;
+      background: red;
+    }
+    .translate{
+      width: 100px;
+      height: 100px;
+      background: #eee;
+      transform: translate(0px,-100px);
+    }
+    .translateCenter{
+      width: 100px;
+      height: 100px;
+      background: #eeeeee;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+    #awesome .favorite:not(#awesome) .highlight {
+      color: red;
+    }
+    #awesome .highlight:nth-of-type(1):nth-last-of-type(1) {
+        color: blue;
+    }
+    .example{
+      width: 100px;
+      height: 100px;
+      background: green;
+      margin-top: -5px;
+      margin-left: -5px;
+    }
+  </style>
+</head>
+<body>
+  <p>
+    <a href="" class="testFei">非替换元素</a>
+    <span class="testFei">非替换元素span</span>
+  </p>
+  <p>
+    <input type="text" class="testInput" value="替换元素">
+  </p>
+  <!-- <p>
+    <img src="./img/backIdCard.png" alt="">
+    <span style="display:none;background-image: url('./img/trueBackIdCard.jpg');"></span>
+  </p> -->
+  <p style="display: none;">
+    <img src="./img/backIdCard.png" alt="">
+    <span style="display:none;background-image: url('./img/trueBackIdCard.jpg');"></span>
+    <span style="visibility: hidden; background-image: url('./img/trueBackIdCard.jpg');"></span>
+  </p>
+  <!-- <p style="visibility: hidden;">
+    <img src="./img/upIdCard.png" alt="">
+    <span style="background-image: url('./img/trueBackIdCard.jpg');"></span>
+  </p> -->
+  <p class="translate">translate</p>
+  <div style="position: relative;background: red;width: 200px;height:200px;">
+    <div class="translateCenter"></div>
+  </div>
+  <ul class="shopping-list" id="awesome">
+      <li><span>Milk</span></li>
+      <li class="favorite" id="must-buy"><span class="highlight">Sausage</span></li>
+  </ul>
+  <div class="example">example</div>
+  <keygen>
+</body>
+</html>

@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "dev": "webpack-dev-server --config build/webpack.config.js --open"
+    "dev": "webpack-dev-server --config build/webpack.config.js --open",
+    "build": "webpack build/webpack.config.js"
   },
   "main": "index.js",
   "devDependencies": {
@@ -14,12 +15,14 @@
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.9.0",
     "style-loader": "^1.1.2",
+    "vue-loader": "^15.8.3",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1",
     "xml-loader": "^1.2.1"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.7.0"
+    "@babel/polyfill": "^7.7.0",
+    "vue": "^2.6.11"
   }
 }

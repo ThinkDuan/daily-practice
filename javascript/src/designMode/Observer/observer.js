@@ -90,6 +90,7 @@ class EventSub {
 }
 let subShare = new SubjectShare()
 let eventSub = new EventSub()
+eventSub.init()
 eventSub.addSub()
 let obShare1 = new ObserverShare('司马懿')
 let obShare2 = new ObserverShare('孙尚香')
@@ -103,3 +104,59 @@ subShare.publish(function() {
 subShare.publish(function() {
   console.log(this.name,'大小姐驾到')
 },'say')
+
+
+// node event 实现
+class Event {
+  constructor(){
+    this.list = {}
+  }
+  on(key,fn){
+    if(!this.list[key]){
+      this.list[key] = []
+    }
+    this.list[key].push(fn)
+  }
+  once(){
+    let args = Array.prototype.slice.call(arguments)
+    if(!args[0]) return
+    if(!args[1]) throw new Error('Need function')
+    let key = args[0]
+    let fn = args[1]
+  }
+  emit(){
+    let args = Array.prototype.slice.call(arguments)
+    if(!args[0]) return
+    let key = args[0]
+    let arg = args.splice(0,1)
+    if(this.list[key]){
+      this.list[key].forEach((item) => {
+        item.call(this,arg)
+      }) 
+    }
+  }
+  remove(key,fn){
+    if(!key) return
+    if(!this.list[key] && this.list[key].length === 0) return
+    for(let i = 0;i<this.list[key].length;i++){
+      if(fn.toString() === this.list[key][i].toString()){
+        this.list[key].splice(i,1)
+        return
+      }
+    }
+  }
+}
+
+let eventInstance = new Event()
+let play = function(data){
+  console.log('this is my play',data)
+}
+eventInstance.on('play',play)
+eventInstance.on('play',() => {
+  console.log('this is 2 play')
+})
+eventInstance.on('say',() => {
+  console.log('this is my say')
+})
+eventInstance.emit('play','jerry')
+eventInstance.emit('say','tom')
