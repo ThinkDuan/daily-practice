@@ -15,3 +15,20 @@ function select(arr){
 }
 let arr = [6,9,2,4,7,9,3]
 console.log(select(arr))
+
+function selectSort(arr){
+  for(let i = 0;i<arr.length;i++){
+    let tempIndex = i
+    for(let j = i+1;j<arr.length;j++){
+      if(arr[j] < arr[tempIndex]){
+        tempIndex = j
+      }
+    }
+    let tempValue = arr[i]
+    arr[i] = arr[tempIndex]
+    arr[tempIndex] = tempValue
+  }
+  return arr
+}
+
+console.log(selectSort(arr))
