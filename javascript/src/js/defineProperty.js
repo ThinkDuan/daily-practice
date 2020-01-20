@@ -5,7 +5,9 @@
 
 // descriptor 对象所包含的值如下：
 // value: 当前属性的值，默认为undefined； writable：当前属性是否可写，即是否可以通过赋值运算符改变其值，默认为false；enumerable：是否可枚举，是否可以出现在该对象的
-// 枚举属性中，默认为false；configurable：当前属性是否可以被配置，是否可以删除等，默认为 false
+// 枚举属性中，默认为false；
+// configurable：当前属性是否可以被删除，以及除value和writable之外的属性是否可以被改变(改变为其他值或者是原来的值都会抛出异常)，默认为 false. 
+// 经在chrome上测试，configurable为false时，该改变 value 属性也会抛出异常，改变writable属性则没有效果，不会报错
 
 // 和通过赋值操作添加的属性和属性值的区别
 // 通过赋值操作添加的普通属性是可枚举的（enumerable: true）能够在属性枚举的期间呈现出来（for....in或forEach；可写的(writable: true)，可以通过赋值操作来改变其值；
@@ -18,7 +20,10 @@
 // configurable 默认为false，enumerable 默认为false
 // 数据描述符同时具有的可选键值 value 默认为undefined，writable 默认为false
 // 存取描述符同时具有的可选键值 get 默认为undefined ，set 默认为undefined
-// 如果一个描述符 value，writable 或者 get，set其中的任何一个关键之，则该描述符被认为是一个数据描述符
+// 如果一个描述符 value，writable 或者 get，set其中的任何一个关键键值不存在，则该描述符被认为是一个数据描述符，
+
+
+// 重复使用defineProperty()定义同一个属性时，如果这个属性的之前的属性configurable为false则会抛出异常，为true时可正常改变
 // 如果一个描述符同时具有value,writable 和get，set 则产生一个异常
 
 // 如果要使一个对象不可写，不可删除，不可枚举，则可以使用Object.freeze()方法，默认实现
@@ -32,13 +37,22 @@ let descriptorObj = Object.create(null)
 Object.defineProperty(obj,'age',descriptorObj)
 // 显示声明
 Object.defineProperty(obj,'sex',{
-  value: 'male',
-  writable: true,
-  // set: function(){}
+  // value: 'male',
+  // writable: false,
+  // // set: function(){}
   // enumerable: false,
-  // configurable: false
+  configurable: false,
+  get:function(){
+    return 1
+  }
 })
-
+Object.defineProperty(obj,'sex',{
+  // value: 'female',
+  wirtable: true,
+  // configurable: false
+  // enumerable: false
+})
+obj.sex = 12
 function foo(){
   console.log(123)
 }
