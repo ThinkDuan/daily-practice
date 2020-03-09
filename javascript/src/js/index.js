@@ -61,3 +61,15 @@ let mousemoveThrottleFunc = throttle(function(e){
 },1000)
 // div.addEventListener('mousemove',mouseoverDebounceFunc)
 div.addEventListener('mousemove',mousemoveThrottleFunc)
+
+// [['a','0'],['b','1'],['c','2']] => ['abc','ab2','a1c','a12','0bc','0b2','01c','012']
+let result = []
+function enumArr(arr,index){
+  arr.forEach((item,index) => {
+    if(index !== arr.length){
+      enumArr(arr,index)
+    } else {
+      result.push()
+    }
+  });
+}
