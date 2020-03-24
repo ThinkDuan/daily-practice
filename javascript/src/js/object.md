@@ -39,4 +39,4 @@ const per2 = new Person('per2')
 实例对象都有一个constructor属性指向构造函数，在这里 per1.constructor 和 per2.constructor 都指向 构造函数 Person
 
 ## 第一个结论
-> 所有的对象都有 __proto__ 和 constructor 属性，只有函数对象才有 prototype 属性，对象的 __proto__ 属性指向构造函数的原型对象 Person.prototype，原型对象（Person.prototype）的constructor 属性指向构造函数，
+> 所有的对象都有 __proto__ 和 constructor 属性，只有函数对象才有 prototype 属性，对象的 __proto__ 属性指向构造函数的原型对象 Person.prototype，对象的 constructor 属性指向构造函数.原型对象（Person.prototype）的constructor 属性指向构造函数，， 构造函数的 constructor 属性指向 其构造函数（Function(){}）

@@ -97,4 +97,32 @@ var aaaa = 'aaaa';
   console.log("2 Before A",A)
   console.log('2 window A',window.A)
 })(window);
+// setTimeout 暂停一秒钟顺序输出的方法
+for(var i = 0;i<5;i++){
+  setTimeout(function(i){
+    console.log(i)
+  },i*1000,i)
+}
 
+for(var i = 0;i<5;i++){
+  fun(i)
+}
+function fun(i){
+  setTimeout(function(){
+    console.log(i)
+  },i*1000)
+}
+
+for(let i = 0;i<5;i++){
+  setTimeout(function(){
+    console.log(i)
+  },i*1000)
+}
+
+for(var i = 0;i<5;i++){
+  (function(i){
+    setTimeout(function(){
+      console.log(i)
+    },i*1000)
+  })(i)
+}

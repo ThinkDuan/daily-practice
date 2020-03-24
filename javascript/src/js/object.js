@@ -13,14 +13,17 @@
 
 
 class Temp {}
-Temp.prototype = {
-  name: 'zhangsan'
+Temp.prototype.name = 'zhangsan'
+Temp.prototype.print = function(){
+  console.log(this.name)
 }
 var temp = new Temp()
 console.group('temp')
 console.log('temp',temp)
 console.log('temp.__proto__ === Temp.prototype======>',temp.__proto__ === Temp.prototype)
+console.log('temp.__proto__===>',temp.__proto__)
 console.log('Temp.__proto__======>',Temp.__proto__)
+console.log('Temp.__proto__=== Function.prototype',Temp.__proto__ === Function.prototype)
 console.log('temp.constructor === Temp======>',temp.constructor === Temp)
 console.log('temp.constructor======>',temp.constructor)
 console.log('Temp.constructor======>',Temp.constructor)
