@@ -17,13 +17,9 @@ const sequelize = new Sequelize(config.database,config.username,config.password,
   }
 })
 
-sequelize.authenticate().then(() => {
-  console.log('>>>>>> db.js ====== sequelize connect success ======')
-}).catch((error) => {
-  console.log('>>>>>> db.js ====== sequelize connect mysql error: ======',error)
-})
 
-const id_type = Sequelize.SMALLINT(50);
+
+const id_type = Sequelize.BIGINT;
 
 function defineModel(name,attributes){
   let attrs = {};
@@ -41,13 +37,14 @@ function defineModel(name,attributes){
   }
   attrs.id = {
     type: id_type,
-    primaryKey: true
+    primaryKey: true,
+    autoIncrement: true
   }
-  attrs.createAt = {
+  attrs.createdAt = {
     type: Sequelize.BIGINT,
     allowNull: false
   }
-  attrs.updateAt = {
+  attrs.updatedAt = {
     type: Sequelize.BIGINT,
     allowNull: false
   }
@@ -62,9 +59,6 @@ function defineModel(name,attributes){
      beforeValidate: function(obj){
        let now = new Date().getTime();
        if(obj.isNewRecord){
-        if (!obj.id) {
-          obj.id = generateId();
-        }
         obj.createdAt = now;
         obj.updatedAt = now;
         obj.version = 0;
@@ -72,6 +66,7 @@ function defineModel(name,attributes){
         obj.updatedAt = Date.now();
         obj.version++;
        }
+       console.log('>>>>>> db.js: hooks beforeValidate obj',JSON.stringify(obj))
      }
    } 
   })
@@ -80,10 +75,26 @@ function defineModel(name,attributes){
 let exp = {
   defineModel: defineModel,
   sync: () => {
-    sequelize.sync({
-      force: true
+    sequelize.authenticate().then(() => {
+      console.log('>>>>>> db.js ====== sequelize connect success ======');
+      sequelize.sync({
+        force: true
+      }).then(() => {
+        console.log('>>>>>> db.js: sync success')
+      }).catch(() => {
+        console.log('>>>>>> db.js: sync fail')
+      })
+      return true
+    }).catch((error) => {
+      console.log('>>>>>> db.js ====== sequelize connect mysql error: ======',error)
+      return false
     })
   }
 };
+
+const TYPES = ['STRING', 'INTEGER', 'BIGINT', 'TEXT', 'DOUBLE', 'DATEONLY', 'BOOLEAN'];
+for (let type of TYPES) {
+  exp[type] = Sequelize[type];
+}
 
 module.exports = exp;

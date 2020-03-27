@@ -12,9 +12,11 @@ module.exports = {};
 for (let f of js_files) {
   console.log(`>>>>>> model.js: import model from file ${f}...`);
   let name = f.substring(0, f.length - 3);
+  // let instance = db.defineModel(name,require(path.resolve(__dirname, '../models/' + f)));
   module.exports[name] = require(path.resolve(__dirname, '../models/' + f));
 }
 
 module.exports.sync = () => {
   db.sync();
 }
+module.exports.define = db.defineModel

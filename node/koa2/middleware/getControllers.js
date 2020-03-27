@@ -10,7 +10,7 @@ function addMapping(router,mapping){
       let path = i.substring(5)
       router.post(path,mapping[i])
     } else {
-      console.log(`invalid URL: ${url}`)
+      console.log(`>>>>>> getControllers: invalid URL: ${url}`)
     }
   }
 }
