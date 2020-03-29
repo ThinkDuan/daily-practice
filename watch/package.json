@@ -18,7 +18,10 @@
   ],
   "author": "duanxinxin",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "axios": "^0.19.2",
+    "fingerprintjs2": "^2.1.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.8.7",
     "@babel/preset-env": "^7.8.7",

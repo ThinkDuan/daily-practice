@@ -10,11 +10,14 @@ function hackAjax(){
       xhr.open = function(method, url, async, user, password){
         url = url;
         page = url
-        open.call(this,method, url, async, user, password)
+        open.call(xhr,method, url, async, user, password)
       }
-      xhr.send = function(data){
+      xhr.send = function(requestData){
         begin = new Date().getTime();
-        send.call(this,data)
+        if (requestData === undefined) {
+          requestData = null;
+        }
+        send.call(xhr,requestData)
       }
       xhr.onreadystatechange = function(){
         if(page && xhr.readyState === 4){
