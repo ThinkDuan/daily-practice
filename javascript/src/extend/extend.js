@@ -62,9 +62,39 @@ function extend(supers,childs){
   F.prototype = supers.prototype
   var inner = new F()
   inner.constructor = childs
-  childs.prototype = childs
+  childs.prototype = inner
   Object.defineProperty(childs.prototype,'constructor',{
       enumerable:false
   });
 }
 
+function aParent(name){
+  this.name = name;
+}
+aParent.prototype.getName = function(){
+  console.log(this.name);
+  return this.name
+}
+function aChild(name,age){
+  aParent.call(this,name)
+  this.age = age
+}
+extend(aParent,aChild)
+let tom = new aChild('tom',12)
+console.log(tom.getName())
+
+// 继承的方式
+// 1. 类式继承 将子类的原型对象指向父类的实例，从而获取到父类定义的和父类原型上的属性和方法
+// 缺点： 无法向父类构造函数传参
+function SuperClass(name){
+  this.name = name;
+}
+SuperClass.prototype.getName = function(){
+  return this.name;
+}
+function SubClass(age){
+  this.age = age;
+}
+SubClass.prototype = new SuperClass('Tom')
+let subOne = new SubClass(12);
+subOne.getName()

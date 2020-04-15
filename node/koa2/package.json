@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "export NODE_ENV=development && node devops/start.js "
+    "start:dev": "export NODE_ENV=development && nodemon devops/start.js --inspect",
+    "start:test": "export NODE_ENV=test && nodemon devops/start.js --inspect"
   },
   "author": "",
   "license": "ISC",
@@ -25,6 +26,11 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
-    "jest": "^25.1.0"
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.2"
+  },
+  "nodemonConfig": {
+    "ignore": ["test/*"],
+    "delay": "1000"
   }
 }

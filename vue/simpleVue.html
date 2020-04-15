@@ -1,0 +1,47 @@
+<!--
+ * @Author: duanxinxin
+ * @Date: 2020-04-07 19:42:39
+ * @LastEditTime: 2020-04-08 16:15:44
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /daily-practice/vue/simpleVue.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./simplevue/simpleVue.js"></script>
+  <title>Simple Vue</title>
+</head>
+<body>
+  <div id="app">
+    <input id="input" type="text" v-model="obj.hello">
+    {{obj.hello}}
+  </div>
+  <script>
+    // 双向数据绑定简单实现
+    // var obj = {};
+    // Object.defineProperty(obj,'hello',{
+    //   set: function(value){
+    //     document.querySelector('#input').value = value;
+    //     document.querySelector('#get').innerHTML = value;
+    //   }
+    // })
+    // document.addEventListener('keyup',function(e){
+    //   obj.hello = e.target.value;
+    // })
+    new window.SimpleVue({
+      el: '#app',
+      data(){
+        return {
+          obj: {
+            hello: 'hello'
+          }
+        }
+      }
+    }).mounted()
+  </script>
+</body>
+</html>

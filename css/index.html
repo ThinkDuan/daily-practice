@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2019-12-16 13:45:51
+ * @LastEditTime: 2020-04-10 14:59:08
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /daily-practice/css/index.html
+ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +13,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="./index.css">
+  <script src="../javascript/src/js/amfe-flexible.js"></script>
   <title>CSS效果</title>
+  <div>
+    head 里面的div元素
+  </div>
 </head>
 <body>
   <h1>CSS效果</h1>
@@ -19,7 +31,10 @@
     <div class="demo2"></div>
   </div>
   <div>
-    
+    <img style="width: 375px;" src="../common/img/aosElement.png" alt="">
+  </div>
+  <div class="dpr">
+    <p>移动端 dpr = 2 时，0.5px边框</p>
   </div>
 </body>
 <script>
@@ -30,5 +45,8 @@
   demo.addEventListener('mouseover',function(e){
     console.log('over',e.target)
   })
+  var dprDiv = document.querySelector('.dpr>p');
+  var dpr = window.devicePixelRatio;
+  dprDiv.innerHTML = dprDiv.textContent + '当前dpr: ' + dpr;
 </script>
 </html>

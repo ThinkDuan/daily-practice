@@ -1,0 +1,46 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-04-11 13:46:29
+ * @LastEditTime: 2020-04-11 13:52:44
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /daily-practice/css/flex/flex.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>flex</title>
+  <style>
+    .content{
+      box-sizing: border-box;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+    }
+    .left{
+      width: 100px;
+      background: red;
+    }
+    .main{
+      background: gray;
+      flex-grow: 1;
+    }
+    .right{
+      width: 100px;
+      background: blue;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <div class="left">left</div>
+    <div class="main">main</div>
+    <div class="right">right</div>
+  </div>
+</body>
+</html>
