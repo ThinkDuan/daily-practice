@@ -131,7 +131,7 @@ class Event {
     let arg = args.splice(0,1)
     if(this.list[key]){
       this.list[key].forEach((item) => {
-        item.call(this,arg)
+        item.apply(this,arg)
       }) 
     }
   }

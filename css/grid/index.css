@@ -1,0 +1,11 @@
+.grid {
+  display: grid;
+  /* grid-template-columns: repeat(3, 33.33%); */
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 33.33% 33.33% 33.33%;
+  grid-template-areas: 'a b c '
+  'd e f' ' g h i';
+}
+.grid-item {
+  border: 1px solid #eeeeee;
+}

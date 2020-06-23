@@ -1,4 +1,4 @@
-//节流：固定时间内重复触发事件，只执行一次
+//节流：持续触发事件时，保证固定时间内只执行一次
 function throttle(fn,interval){
   let timer = null,last = new Date().getTime()
   return function(...args){
@@ -17,7 +17,7 @@ function throttle(fn,interval){
     }
   }
 }
-// 防抖：一段时间内触发的事件只执行一次，这段时间内重新出发事件则重新计算时间
+// 防抖：持续触发事件，一段时间内没有再触发事件才执行一次
 function debounce(fn,interval,immediate){
   let timer = null;
   let immediateDo = false
