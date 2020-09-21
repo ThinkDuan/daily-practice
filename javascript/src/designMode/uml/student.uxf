@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <help_text/>
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>20</y>
+      <w>150</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>学生
+Student
+--
+-name:String
+-age: Int
+--
++getName():String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

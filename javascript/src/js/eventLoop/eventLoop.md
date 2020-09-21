@@ -1,0 +1,3 @@
+# eventloop
+Javascript 单线程的来源，取决于javascript的用途，主要和用户互动，以及操作Dom。多线程会带来很复杂的同步问题。
+为了利用多核cpu的计算能力，HTML5提出了web worker，允许Javascript创建多个线程，但是子线程完全受主线程控制，且不得操作dom
