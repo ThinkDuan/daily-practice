@@ -75,6 +75,9 @@ function infiniteLoop(): never {
   while (true) {
   }
 }
+
+// null 和 undefined 也有自己的类型分别是 null 和undefined 本身作用不是很大，但是默认情况下null和undefined是所有类型的子类型，也就是说可以将null和undefined赋值给其他任何类型的变量
+// 然而，当你指定了--strictNullChecks标记，null和undefined只能赋值给void和它们各自。 这能避免 很多常见的问题。 也许在某处你想传入一个 string或null或undefined，你可以使用联合类型string | null | undefined。
 // 类型断言
 // 有时候你会遇到这样的情况，你会比TypeScript更了解某个值的详细信息。 通常这会发生在你清楚地知道一个实体具有比它现有类型更确切的类型。
 
@@ -92,3 +95,4 @@ let someValueTwo: any = "this is a string";
 let strLengthTwo: number = (someValueTwo as string).length;
 // 两种形式是等价的。 至于使用哪个大多数情况下是凭个人喜好；然而，当你在Type/Script里使用JSX时，只有 as语法断言是被允许的。
 
+// 

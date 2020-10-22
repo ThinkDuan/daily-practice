@@ -13,3 +13,6 @@ function foo(x){
   let x = x // 会报错x已经被定义了，
 }
 `
+ES6规定
+var、function声明的全局变量依然为顶层变量的属性
+let、const、class声明的变量全局变量依然为全局变量，但是这个全局变量不属于顶层变量的属性
