@@ -34,7 +34,7 @@ class Observer {
     object.add(this)
   }
   update(data){
-    console.log(`this name say ${data}`)
+    console.log(`this ${this.name} say ${data}`)
   }
 }
 let sub = new Subject()
@@ -111,52 +111,82 @@ class Event {
   constructor(){
     this.list = {}
   }
-  on(key,fn){
+  on (key, fn, type) {
     if(!this.list[key]){
       this.list[key] = []
     }
-    this.list[key].push(fn)
-  }
-  once(){
-    let args = Array.prototype.slice.call(arguments)
-    if(!args[0]) return
-    if(!args[1]) throw new Error('Need function')
-    let key = args[0]
-    let fn = args[1]
-  }
-  emit(){
-    let args = Array.prototype.slice.call(arguments)
-    if(!args[0]) return
-    let key = args[0]
-    let arg = args.splice(0,1)
-    if(this.list[key]){
-      this.list[key].forEach((item) => {
-        item.apply(this,arg)
-      }) 
+    const array = this.list[key]
+    if (!type) {
+      type = 'all'
     }
-  }
-  remove(key,fn){
-    if(!key) return
-    if(!this.list[key] && this.list[key].length === 0) return
-    for(let i = 0;i<this.list[key].length;i++){
-      if(fn.toString() === this.list[key][i].toString()){
-        this.list[key].splice(i,1)
-        return
+    if (array.length > 0) {
+      for (let i = 0; i < array.length; i++) {
+        if (fn === array[i].fn) return
       }
     }
+    array.push({
+      type,
+      fn
+    })
+  }
+  once (key, fn) {
+    this.on(key, fn, 'once')
+  }
+  emit (key, ...data) {
+    const array = this.list[key]
+    const onceList = []
+    if(array && array.length > 0){
+      array.forEach((item) => {
+        item.fn.apply(this, data)
+        if (item.type === 'once') {
+          onceList.push(
+            {
+              key,
+              fn: item.fn
+            }
+          )
+        }
+      })
+      if (onceList.length > 0) {
+        onceList.forEach(item => {
+          this.remove(item.key, item.fn)
+        })
+      }
+    }
+  }
+  remove(key, fn){
+    if(!key) return
+    const array = this.list[key]
+    if(!array && array.length === 0) return
+    const length = array.length
+    for(let i = 0;i < length;i++){
+      if(array[i] && fn.toString() === array[i].fn.toString()){
+        array.splice(i,1)
+      }
+    }
+  }
+  removeAll () {
+    this.list = {}
+  }
+  destory () {
+    this.list = {}
   }
 }
 
 let eventInstance = new Event()
 let play = function(data){
-  console.log('this is my play',data)
+  console.log('[evenet]:this is my play',data)
 }
-eventInstance.on('play',play)
+eventInstance.once('play',play)
 eventInstance.on('play',() => {
-  console.log('this is 2 play')
+  console.log('[evenet]:this is 2 play')
 })
 eventInstance.on('say',() => {
-  console.log('this is my say')
+  console.log('[evenet]:this is my say')
+})
+eventInstance.emit('play','jerry')
+eventInstance.remove('play', () => {
+  console.log('[evenet]:this is 2 play')
 })
 eventInstance.emit('play','jerry')
 eventInstance.emit('say','tom')

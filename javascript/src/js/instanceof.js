@@ -15,3 +15,12 @@ class Person{}
 let per = new Person()
 console.log(instanceofFun(per,Person))
 console.log(instanceofFun(per,Object))
+
+foo()
+foo1()
+function foo() {
+  console.log('foo')
+}
+var foo1 = function () {
+  console.log('function express foo1')
+}

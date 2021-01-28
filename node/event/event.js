@@ -41,3 +41,70 @@ personOne.once('play',() => {
 // personOne.removeListener('play')
 personOne.emit('play','this is play')
 personOne.emit('play','this is play two')
+
+
+class Event {
+  constructor(){
+    this.list = {}
+  }
+  on (key, fn, type) {
+    if(!this.list[key]){
+      this.list[key] = []
+    }
+    const array = this.list[key]
+    if (!type) {
+      type = 'all'
+    }
+    if (array.length > 0) {
+      for (let i = 0; i < array.length; i++) {
+        if (fn === array[i].fn) return
+      }
+    }
+    array.push({
+      type,
+      fn
+    })
+  }
+  once (key, fn) {
+    this.on(key, fn, 'once')
+  }
+  emit (key, ...data) {
+    const array = this.list[key]
+    const onceList = []
+    if(array && array.length > 0){
+      array.forEach((item) => {
+        item.fn.apply(this, data)
+        if (item.type === 'once') {
+          onceList.push(
+            {
+              key,
+              fn: item.fn
+            }
+          )
+        }
+      })
+      if (onceList.length > 0) {
+        onceList.forEach(item => {
+          this.remove(item.key, item.fn)
+        })
+      }
+    }
+  }
+  remove(key, fn){
+    if(!key) return
+    const array = this.list[key]
+    if(!array && array.length === 0) return
+    const length = array.length
+    for(let i = 0;i < length;i++){
+      if(array[i] && fn.toString() === array[i].fn.toString()){
+        array.splice(i,1)
+      }
+    }
+  }
+  removeAll () {
+    this.list = {}
+  }
+  destory () {
+    this.list = {}
+  }
+}

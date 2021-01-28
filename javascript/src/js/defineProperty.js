@@ -35,6 +35,7 @@ let obj = {
 }
 let descriptorObj = Object.create(null)
 Object.defineProperty(obj,'age',descriptorObj)
+console.log('descriptorObj-->', descriptorObj)
 // 显示声明
 Object.defineProperty(obj,'sex',{
   // value: 'male',
