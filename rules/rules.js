@@ -87,31 +87,16 @@ let email = (value,callback) => {
 };
 let cellPhone = (value,callback) => {
   let reg = /^[1][3456789][0-9]{9}$/;
-  if(!value){
-    callback('手机格式错误')
-  } else if(!reg.test(value)){
+  if(!reg.test(value)){
     callback('手机格式错误')
   } else {
     callback(true)
   }
 };
-let phoneNoRequired = (value,callback) => {
-  let phone = /^(([0\+]\d{2,3}-)?(0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;
-  let cellPhone = /^[1][3456789][0-9]{9}$/;
-  if(!value){
-     callback(true);
-  } else if(!phone.test(value) && !cellPhone.test(value)){
-    callback('电话或手机格式错误')
-  } else {
-     callback(true);
-  }
-};
 let phone = (value,callback) => {
-  let phone = /^(([0\+]\d{2,3}-)?(0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;
+  let phone = /^(([0\+]\d{2,3}-)?(0\d{2,3})-)?(\d{7,8})(-(\d{3,}))?$/;
   let cellPhone = /^[1][3456789][0-9]{9}$/;
-  if(!value){
-    callback('电话或手机不能为空')
-  } else if(!phone.test(value) && !cellPhone.test(value)){
+  if(!phone.test(value) && !cellPhone.test(value)){
     callback('电话或手机格式错误')
   } else {
      callback(true);
@@ -307,9 +292,7 @@ let postalCode = (value,callback) => {
 };
 let money = (value,callback) => {
   let reg = /(^(([1-9]([0-9]+)?)|(0{1}))(\.[0-9]{1,2})?$)/;
-  if(!value){
-    callback('金额格式错误')
-  } else if(!reg.test(value)){
+  if(!reg.test(value)){
     callback('金额格式错误')
   } else {
     callback(true)
@@ -319,7 +302,6 @@ export {
   idCard,
   email,
   cellPhone,
-  phoneNoRequired,
   phone,
   number,
   numberDecimal,
