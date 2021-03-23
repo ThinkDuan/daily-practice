@@ -20,10 +20,13 @@ Javascript 单线程的来源，取决于javascript的用途，主要和用户�
 ## 宏任务和微任务
 异步任务分为宏任务和微任务，相应的，事件队列也分为宏队列和微任务队列。
 微任务的优先级比宏任务的优先级要高，当两个队列都非空时，微队列的任务会被优先执行。
-宏任务：script，计时器的回调函数（setTimeout(),setInterval()）,ajax事件，注册的事件，setImmediate()（浏览器未支持）会排在队列的最前面,requestAnimationFrame
-微任务：promise.then() catch() finaly(), nextTick（例如vue，node等）,MutationObserver
+宏任务：script，计时器的回调函数（setTimeout(),setInterval()）,ajax事件，注册的事件，setImmediate()（浏览器未支持）会排在队列的最前面,requestAnimationFrame,I/O、UI Rendering。
+微任务：promise.then() catch() finaly(), nextTick（例如vue，node等）,MutationObserver()
 
 node 环境中的 process.nextTick()事件最处于微任务的最前面
 
 #### requestAnimationFrame() 事件
 requestAnimationFrame(callback) callback事件不能简单的归并为微任务或者宏任务，它发生在浏览器下次重绘之前，在当前一次事件循环之中，处于微任务之后，宏任务之前，如果当前事件循环运行在后台标签页或者隐藏的<iframe> 里时requestAnimationFrame()会被暂停调用，
+
+### MutationObserver
+MuttationObservder()提供了监视对DOM树所作更改的能力。它被设计为旧的Mutation Events功能的替代品。该功能是DOM3 Events规范的一部分。

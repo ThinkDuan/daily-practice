@@ -52,6 +52,11 @@ async function fun(){
 function consoleFun(str){
   console.log(str)
 }
+function consoleSettimeout () {
+  setTimeout(() => {
+    console.log('=====consoleSettimeout=====')
+  }, 100)
+}
 // node 环境
 // process.nextTick(() => {
 //   console.log("6")

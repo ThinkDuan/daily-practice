@@ -26,9 +26,33 @@ fm(lisi);
 还要注意的是，在构造函数的参数上使用public等同于创建了同名的成员变量。 */
 class Student {
   fullName: string;
-  constructor(public firstName,public middleInitial,public lastName) {
+  constructor(public firstName:string,public middleInitial:string,public lastName:string) {
     this.fullName = firstName + " " + middleInitial + " " + lastName;
   }
 }
 let zhangTongXue = new Student("Tom","M","Two");
 fm(zhangTongXue);
+
+
+class Lady {
+  constructor (public name:string, public age:number) {}
+}
+class Xiao extends Lady {
+  static innerWant: string = "more money";
+  static sayInnerWant ():void {
+    console.log(`I want ${this.innerWant}`)
+  }
+  readonly _want:string = "money";
+  constructor (name: string, age: number, public like: string, private _anyLove:string) {
+    super(name, age)
+  }
+  get anyLove (): string {
+    return this._anyLove;
+  }
+  set anyLove (love:string) {
+    this._anyLove = love
+  }
+}
+const one = new Xiao('zhangsan', 22, 'any', 'love')
+console.log(one.anyLove)
+Xiao.sayInnerWant()
