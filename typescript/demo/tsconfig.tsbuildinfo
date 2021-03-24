@@ -26,6 +26,11 @@
         "signature": "097a57355ded99c68e6df1b738990448e0bf170e606707df5a7c0481ff2427cd",
         "affectsGlobalScope": true
       },
+      "./src/main.ts": {
+        "version": "4e48c5ef21812ad54b66e61229b06751e71ff78f77616502f237d44b8d431b18",
+        "signature": "85aac11de9603b9ebf93613f11e1bc2362753eeb60d4371c08be527dfd17e209",
+        "affectsGlobalScope": true
+      },
       "./src/one.ts": {
         "version": "d61d4daff3b2321734bb62cd394e8b8c37ad92d3680e229f672e12ba09a33d7b",
         "signature": "f92daa8fcaafc338d68eb8cc611fbaf333dc1d7c3e744cf27119f92f8a11bf83",
@@ -49,11 +54,13 @@
       "esModuleInterop": true,
       "skipLibCheck": true,
       "forceConsistentCasingInFileNames": true,
+      "watch": true,
       "configFilePath": "./tsconfig.json"
     },
     "referencedMap": {},
     "exportedModulesMap": {},
     "semanticDiagnosticsPerFile": [
+      "./src/main.ts",
       "./src/one.ts",
       "./src/union.ts",
       "../../../../../users/cheliang4/appdata/roaming/npm/node_modules/typescript/lib/lib.d.ts",
