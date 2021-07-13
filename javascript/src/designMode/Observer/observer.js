@@ -106,7 +106,7 @@ subShare.publish(function() {
 },'say')
 
 
-// node event 实现
+// node event 实现,发布订阅模式
 class Event {
   constructor(){
     this.list = {}

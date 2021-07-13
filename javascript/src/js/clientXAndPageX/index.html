@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClientX</title>
+  <style>
+    body {
+      height: 3000px;
+      width: 2000px;
+    }
+    main {
+      height: 2000px;
+      background-color: brown;
+    }
+    #footer {
+      margin-left: 300px;
+      height: 200px;
+      background-color: blue;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Home</a>
+      <a href="#">Home</a>
+    </nav>
+  </header>
+  <main>
+    <aside>
+      <h1>aside</h1>
+    </aside>
+    <article>
+      <header>article One Header</header>
+      <section>
+        <h1>article One Section</h1>
+        <p>文正</p>
+      </section>
+      <footer>article One Footer</footer>
+    </article>
+  </main>
+  <footer id="footer">
+    footer
+  </footer>
+  <script>
+    var footer = document.querySelector('#footer');
+    var clientX = footer.clientX;
+    console.log(clientX)
+  </script>
+</body>
+</html>

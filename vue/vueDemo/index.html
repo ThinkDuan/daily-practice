@@ -9,6 +9,7 @@
 <body>
   <div id="app">
     <h1>{{hello}}</h1>
+    <button @click="handleClick">确认</button>
   </div>
   <script src="../common/vue.js"></script>
   <script>
@@ -16,6 +17,14 @@
       data () {
         return {
           hello: "Hello World!"
+        }
+      },
+      created () {
+        this.hello += 'Hi!!'
+      },
+      methods: {
+        handleClick () {
+          console.log('click')
         }
       }
     })
