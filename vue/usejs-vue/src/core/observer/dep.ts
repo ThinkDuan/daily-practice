@@ -5,11 +5,14 @@
  */
 import Watcher from './watcher';
 import { remove } from '../utils';
+let uid = 0;
 export default class Dep {
   static target: Watcher;
   private subs: Array<Watcher>;
+  id: number;
   constructor() {
-    this.subs = []
+    this.subs = [];
+    this.id = uid++;
   }
   addSub(sub: Watcher) {
     this.subs.push(sub);

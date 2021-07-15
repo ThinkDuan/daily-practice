@@ -1,10 +1,17 @@
 import Dep from './dep';
 export default class Watcher {
-  constructor() {}
+  depIds: Set<number>;
+  constructor() {
+    this.depIds = new Set();
+  }
   update() {
     console.log('update')
   }
   addDep(dep: Dep) {
-    dep.addSub(this);
+    const id = dep.id;
+    if (!this.depIds.has(id)) {
+      dep.addSub(this);
+      this.depIds.add(id);
+    }
   }
 }

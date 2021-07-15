@@ -75,7 +75,7 @@ function withValue(value){
   return d
 }
 let objOne = {}
-Object.defineProperty(objOne,'static',withValue('static'))
+// Object.defineProperty(objOne,'static',withValue('static'))
 
 
 console.group('defineProperty')
@@ -93,3 +93,25 @@ console.log('obj->',obj)
 console.log('foo.d->',foo.d)
 foo()
 console.groupEnd()
+
+const arr = [1,2];
+let val = arr[0]
+Object.defineProperty(arr, '0', {
+  configurable: true,
+  enumerable: true,
+  get: function () {
+    console.log('get arr')
+    return val
+  },
+  set: function (newVal) {
+    console.log('set arr', newVal)
+    if (val !== newVal) {
+      val = newVal
+    }
+  }
+})
+
+arr[0]
+arr[0] = 123
+arr.push(3)
+arr.splice(0,1)

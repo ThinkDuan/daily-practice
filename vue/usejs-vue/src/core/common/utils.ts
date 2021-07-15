@@ -7,4 +7,9 @@ export function remove(arr: Array<any>, item: any): Array<any> | void {
   }
 }
 
-export function isValidPro
+export function isObject(obj: any): boolean {
+  if (Object.prototype.toString.call(obj) !== '[object Object]') {
+    return false;
+  }
+  return true;
+}
