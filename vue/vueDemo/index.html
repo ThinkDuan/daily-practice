@@ -16,7 +16,18 @@
     var app = new Vue({
       data () {
         return {
-          hello: "Hello World!"
+          hello: "Hello World!",
+          arr: [1,2,3],
+          obj: {
+            name: 'zhangsan',
+            sex: 'male'
+          },
+          dobj: {
+            name: 'lisi',
+            obj: {
+              objName: 'lisison'
+            }
+          }
         }
       },
       created () {

@@ -18,6 +18,12 @@ export class Observer {
       defineReactive(obj, element)
     }
   }
+  observeArray (items: Array<any>) {
+    for (let index = 0; index < items.length; index++) {
+      const element = items[index];
+      observe(element);
+    }
+  }
 }
 function defineReactive(
   obj: ObserverObject,
@@ -53,6 +59,7 @@ function defineReactive(
 }
 
 function observe(val: ObserverObject) {
+  if (!isObject(val)) return;
   for (const key in val) {
     if (Object.prototype.hasOwnProperty.call(val, key)) {
       defineReactive(val, key)
